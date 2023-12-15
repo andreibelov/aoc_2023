@@ -3,26 +3,6 @@
 
 #include "main.h"
 
-int	*ft_strstr(char *haystack, char *words[])
-{
-	char		*s;
-	char		*needle = NULL;
-	size_t		i;
-
-	if (!haystack || !*haystack)
-		return (NULL);
-	i = -1;
-	while (++i < 11)
-	{
-		s = haystack;
-		needle = words[i];
-		while (*needle++ == *s++)
-			if (*needle == '\0')
-				return (i + 1);
-	}
-	return (NULL);
-}
-
 int get_game_id(char *str)
 {
 	int			id;

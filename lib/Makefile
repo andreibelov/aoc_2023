@@ -23,6 +23,7 @@ SRC_FILES 		:= ft_atoi.c \
 					ft_fd2.c \
 					ft_isctype.c \
 					ft_str1.c \
+					ft_strstr.c \
 					ft_bzero.c \
 					ft_strdup.c \
 					ft_split.c \

@@ -4,27 +4,6 @@
 #include "main.h"
 #include "stdio.h"
 
-int	*ft_strstr(char *haystack, char *words[])
-{
-	char		*s;
-	char		*needle = NULL;
-	size_t		i;
-
-	if (!haystack || !*haystack)
-		return (NULL);
-	i = -1;
-	while (++i < 11)
-	{
-		s = haystack;
-		needle = words[i];
-		while (*needle++ == *s++)
-			if (*needle == '\0')
-				return (i + 1);
-	}
-	return (NULL);
-}
-
-
 int	read_single_file(FILE *fp)
 {
 	char	*line = NULL;
@@ -33,7 +12,7 @@ int	read_single_file(FILE *fp)
 	ssize_t	nread;
 	GList	*number_list = NULL;
 	int 	d = 0;
-	int 	i;
+	size_t 	i;
 	char	*dict[10] = {
 			"zero",
 			"one",
@@ -56,7 +35,7 @@ int	read_single_file(FILE *fp)
 				number_list = g_list_append(number_list,
 											GINT_TO_POINTER (*ptr - '0'));
 			else if (isalpha(*ptr))
-				if (i = ft_strstr(ptr, &dict))
+				if (i = ft_strstr_fixed(ptr, &dict))
 				{
 					number_list = g_list_append(number_list,
 												GINT_TO_POINTER (i - 1));
@@ -65,7 +44,7 @@ int	read_single_file(FILE *fp)
 		if (g_list_length(number_list) > 0) {
 			int left = GPOINTER_TO_INT(g_list_first(number_list)->data);
 			int right = GPOINTER_TO_INT(g_list_last(number_list)->data);
-//			printf("s: \"%s\", \"%d%d\"\n", line, left, right);
+//			ft_printf("s: \"%s\", \"%d%d\"\n", line, left, right);
 			d +=  left * 10 + right;
 		}
 		g_list_free(number_list);
@@ -88,6 +67,6 @@ int	main(int argc, char **argv)
 	fp = fopen(str, "r");
 	result = read_single_file(fp);
 	fclose(fp);
-	printf("Answer is: \"%d\"", result);
+	ft_printf("Answer is: \"%d\"", result);
 	return (EX_OK);
 }
