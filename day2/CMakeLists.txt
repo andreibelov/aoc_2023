@@ -8,13 +8,13 @@ set(CMAKE_C_STANDARD 90)
 
 cmake_policy(SET CMP0048 NEW)
 cmake_policy(SET CMP0075 NEW)
-project("day1" VERSION 0.1.0 LANGUAGES C CXX ASM)
+project("day2" VERSION 0.1.0 LANGUAGES C CXX ASM)
 set(CMAKE_VERBOSE_MAKEFILE ON)
 set(CMAKE_REQUIRED_LIBRARIES "-lbsd")
 
 include_directories(include)
 
-set(TARGET_NAME day1)
+set(TARGET_NAME day2)
 set(TARGET_HEADERS
         "")
 set(TARGET_SOURCES
@@ -46,4 +46,7 @@ target_link_options(${TARGET_NAME} PRIVATE ${TARGET_LINK_FLAGS})
 target_link_libraries(${TARGET_NAME} bsd FTLIB Threads::Threads PkgConfig::deps)
 target_compile_definitions(${TARGET_NAME} PRIVATE
         INPUT_FILE_NAME="${CMAKE_CURRENT_SOURCE_DIR}/include/input"
-)
+        GAME_REFIX="Game "
+        "MAIN={12, 13, 14}"
+        PART2
+        )
