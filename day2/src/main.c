@@ -2,7 +2,6 @@
 //  SPDX-License-Identifier: GPL-3.0-or-later
 
 #include "main.h"
-#include "stdio.h"
 
 int	*ft_strstr(char *haystack, char *words[])
 {
@@ -33,7 +32,7 @@ int get_game_id(char *str)
 		return (-1);
 	while (*prefix++ == *str)
 		str++;
-	id = atoi(str);
+	id = ft_atoi(str);
 	return (id);
 }
 
@@ -62,7 +61,7 @@ attempt_t	*new_attempt(char *line)
 		cubes = strtok_r(set, ",", &saveptr[2]);
 		while (cubes)
 		{
-			int num = atoi(strtok_r(cubes, " ", &saveptr[3]));
+			int num = ft_atoi(strtok_r(cubes, " ", &saveptr[3]));
 			colour = strtok_r(NULL, " ", &saveptr[3]);
 			if(*colour && handful_setter[*colour])
 				handful = handful_setter[*colour](handful, num);
@@ -158,6 +157,6 @@ int	main(int argc, char **argv)
 	fp = fopen(str, "r");
 	result = get_answer(fp);
 	fclose(fp);
-	printf("Answer is: \"%d\"", result);
+	ft_printf("Answer is: \"%d\"", result);
 	return (EX_OK);
 }

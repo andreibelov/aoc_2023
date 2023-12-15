@@ -16,12 +16,22 @@ CFLAGS			:= -Wall -Wextra -Werror
 LIB_COMMAND		:= ar rcs
 RM				:= /bin/rm
 
-SRC_FILES 		:= ft_str1.c \
-					 ft_bzero.c \
-					 ft_strdup.c \
-					 ft_split.c \
-					 ft_calloc.c
-
+SRC_FILES 		:= ft_atoi.c \
+					ft_itoa.c \
+					ft_mem.c \
+					ft_fd1.c \
+					ft_fd2.c \
+					ft_isctype.c \
+					ft_str1.c \
+					ft_bzero.c \
+					ft_strdup.c \
+					ft_split.c \
+					ft_calloc.c \
+					ft_printf.c \
+					ft_print_unsigned.c \
+					ft_print_hex.c \
+					ft_printf_utils1.c \
+					ft_printf_utils2.c
 OBJ_DIR			= obj
 OBJS			= $(SRC_FILES:%.c=$(OBJ_DIR)/%.o)
 
