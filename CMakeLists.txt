@@ -1,9 +1,16 @@
 cmake_minimum_required(VERSION 3.8.2)
 project(aoc_2023 LANGUAGES C)
 
+
+add_custom_target(fclean ALL)
+add_custom_command(TARGET fclean POST_BUILD
+        COMMAND cd ${CMAKE_CURRENT_SOURCE_DIR}/lib/libft
+        COMMAND make fclean
+        )
+
 add_custom_target(libft.a ALL)
 add_custom_command(TARGET libft.a POST_BUILD
-        COMMAND cd ${CMAKE_CURRENT_SOURCE_DIR}/lib
+        COMMAND cd ${CMAKE_CURRENT_SOURCE_DIR}/lib/libft
         COMMAND make all
         COMMAND cp -v libft.a ${CMAKE_CURRENT_BINARY_DIR}/
         #        BYPRODUCTS libft.a

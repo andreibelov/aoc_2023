@@ -12,7 +12,6 @@
 
 #include "libft.h"
 
-
 /*
  * The strstr() function finds the first occurrence of the substring needle
  * in the string haystack. The terminating null bytes ('\0') are not compared.
@@ -41,9 +40,10 @@ char	*ft_strstr(char *str, char *to_find)
 size_t	ft_strstr_fixed(char *haystack, char *words[])
 {
 	char		*s;
-	char		*needle = NULL;
+	char		*needle;
 	size_t		i;
 
+	needle = NULL;
 	if (!haystack || !*haystack)
 		return (0);
 	i = -1;

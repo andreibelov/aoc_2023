@@ -10,12 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include "libft.h"
 
-char *ft_uitoa_buf(unsigned int abs,  char *buf, size_t length)
+char	*ft_uitoa_buf(unsigned int abs, char *buf, size_t length)
 {
-
 	char				*ptr;
 	unsigned int const	decimal_radix = 10;
 

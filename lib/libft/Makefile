@@ -12,63 +12,48 @@
 
 NAME			:= libft.a
 CC				:= cc
-CFLAGS			:= -Wall -Wextra -Werror
+CFLAGS			:= -Wall -Wextra -Werror -Wimplicit -I .
+CTAGS			:= ctags
 LIB_COMMAND		:= ar rcs
 RM				:= /bin/rm
 
-SRC_FILES 		:= ft_atoi.c \
-					ft_itoa.c \
-					ft_mem.c \
-					ft_fd1.c \
-					ft_fd2.c \
-					ft_isctype.c \
-					ft_str1.c \
-					ft_strstr.c \
-					ft_bzero.c \
-					ft_strdup.c \
-					ft_split.c \
-					ft_calloc.c \
-					ft_printf.c \
-					ft_print_unsigned.c \
-					ft_print_hex.c \
-					ft_printf_utils1.c \
-					ft_printf_utils2.c
-OBJ_DIR			= obj
-OBJS			= $(SRC_FILES:%.c=$(OBJ_DIR)/%.o)
+LIBFTSRCDIR		= $(CURDIR)
+SRCS	 		:=
+DIRS			:= gen io std string
 
-ASM_FILES		= $(SRC_FILES:.c=.s)
+include $(addsuffix /Makefile.mk,$(DIRS))
 
-BONUS			= ft_lst1.c \
-					ft_lst2.c
-
-BOBJ			= $(BONUS:%.c=$(OBJ_DIR)/%.o)
-BONUS_ASM		= $(BONUS:.c=.s)
+BUILD_DIR		= build
+OBJS			= $(SRCS:%.c=%.o)
+BUILD_OBJS		= $(SRCS:%.c=$(BUILD_DIR)/%.o)
+#OBJS			:= $(patsubst %.c,$(BUILD_DIR)/%.o,$(SRCS))
+ASM_FILES		= $(SRCS:.c=.s)
 
 all: $(NAME)
 
-$(OBJ_DIR):
-		mkdir -pv $(OBJ_DIR)
-$(OBJ_DIR)/%.o: %.c
+# We need this for the output to go in the right place.  It will default to
+# empty if make was configured to work with a cc that can't grok -c and -o
+# together.  You can't compile the C library with such a compiler.
+OUTPUT_OPTION	= -o $@
+
+$(BUILD_DIR):
+		mkdir -pv $(BUILD_DIR) $(patsubst %,$(BUILD_DIR)/%,$(DIRS))
+
+$(BUILD_DIR)/%.o:	%.c
 		$(CC) $(CFLAGS) -c $^ -o $@
 
-bonus:	.bonus
-
-.bonus: $(OBJS) $(BOBJ)
-		$(LIB_COMMAND) $(NAME) $(OBJS) $(BOBJ)
-		touch $@
-
-$(NAME): $(OBJ_DIR) $(OBJS)
-		$(LIB_COMMAND) $(NAME) $(OBJS)
+$(NAME): $(BUILD_DIR) $(BUILD_OBJS)
+		$(LIB_COMMAND) $(NAME) $(BUILD_OBJS)
 
 clean:
-		$(RM) -rf $(OBJ_DIR) $(ASM_FILES) $(BONUS_ASM)
+		$(RM) -f $(OBJS) $(ASM_FILES)
 
 fclean: clean
-		$(RM) -f $(NAME) a.out .bonus
+		$(RM) -fr $(NAME) $(BUILD_DIR) a.out
 
 re: fclean all
 
 norm:
-		@norminette $(SRC_FILES)
+		@norminette $(SRCS)
 
-.PHONY: all clean flean re bonus
+.PHONY: all clean flean re bonus $(BUILD_DIR)
