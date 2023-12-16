@@ -19,9 +19,10 @@ add_library(FTLIB STATIC IMPORTED)
 #add_dependencies(FTLIB libft.a)
 set_target_properties(FTLIB PROPERTIES
         IMPORTED_LOCATION ${CMAKE_CURRENT_BINARY_DIR}/libft.a # Make sure to use absolute path here
-        INTERFACE_INCLUDE_DIRECTORIES ${CMAKE_CURRENT_SOURCE_DIR}/include
+        INTERFACE_INCLUDE_DIRECTORIES ${CMAKE_CURRENT_SOURCE_DIR}/lib/include
         INTERFACE_COMPILE_DEFINITIONS "OPTIMISTIC"
         )
 
 add_subdirectory(day1)
 add_subdirectory(day2)
+add_subdirectory(day3)
