@@ -47,6 +47,7 @@ int		ft_tolower(int c);
 size_t	ft_strlen(const char *s);
 size_t	ft_strstr_fixed(char *haystack, char *words[]);
 char	*ft_strstr(char *str, char *to_find);
+char	*ft_empty_string(size_t length);
 void	ft_lstadd_back(t_list **alst, t_list *new);
 void	ft_lstadd_front(t_list **lst, t_list *new);
 t_list	*ft_lstnew(void *content);

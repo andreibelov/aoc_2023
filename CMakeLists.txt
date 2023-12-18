@@ -8,15 +8,20 @@ add_custom_command(TARGET fclean POST_BUILD
         COMMAND make fclean
         )
 
+set(FT_HEADERS "")
+set(FT_SOURCES "")
+file(GLOB FT_HEADERS "${CMAKE_CURRENT_SOURCE_DIR}/lib/libft/**/ft_*.h")
+file(GLOB FT_SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/lib/libft/**/ft_*.c")
+
 add_custom_target(libft.a ALL)
+target_sources(libft.a PRIVATE ${FT_HEADERS} ${FT_SOURCES})
 add_custom_command(TARGET libft.a POST_BUILD
         COMMAND cd ${CMAKE_CURRENT_SOURCE_DIR}/lib/libft
         COMMAND make all
         COMMAND cp -v libft.a ${CMAKE_CURRENT_BINARY_DIR}/
-        #        BYPRODUCTS libft.a
         )
 add_library(FTLIB STATIC IMPORTED)
-#add_dependencies(FTLIB libft.a)
+
 set_target_properties(FTLIB PROPERTIES
         IMPORTED_LOCATION ${CMAKE_CURRENT_BINARY_DIR}/libft.a # Make sure to use absolute path here
         INTERFACE_INCLUDE_DIRECTORIES ${CMAKE_CURRENT_SOURCE_DIR}/lib/include

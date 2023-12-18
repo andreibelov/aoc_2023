@@ -17,6 +17,7 @@ FILES   = ft_bzero.c \
            ft_mem.c \
            ft_split.c \
            ft_str1.c \
+           ft_str2.c \
            ft_strdup.c \
            ft_strstr.c
 

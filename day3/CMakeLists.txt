@@ -45,5 +45,5 @@ target_compile_options(${TARGET_NAME} PRIVATE ${TARGET_CFLAGS})
 target_link_options(${TARGET_NAME} PRIVATE ${TARGET_LINK_FLAGS})
 target_link_libraries(${TARGET_NAME} bsd FTLIB Threads::Threads PkgConfig::deps)
 target_compile_definitions(${TARGET_NAME} PRIVATE
-        INPUT_FILE_NAME="${CMAKE_CURRENT_SOURCE_DIR}/include/input1test"
+        INPUT_FILE_NAME="${CMAKE_CURRENT_SOURCE_DIR}/include/input"
         )
