@@ -74,6 +74,10 @@ set_target_properties(${GLIB_name} PROPERTIES
 #message("${GLIB_SOURCES}")
 #message("==================")
 
+#https://stackoverflow.com/questions/49083580/
+#https://musteresel.github.io/posts/2018/03/cmake-phony-like-target-for-docs.html
+#https://www.gnu.org/software/make/manual/html_node/Special-Targets.html
+#https://cmake.org/cmake/help/latest/prop_tgt/EXCLUDE_FROM_ALL.html
 add_executable(dummy /dev/null)
 target_link_libraries(dummy ${GLIB_name})
 
@@ -92,5 +96,4 @@ target_compile_options(${TARGET_NAME} PRIVATE ${TARGET_CFLAGS})
 target_link_options(${TARGET_NAME} PRIVATE ${TARGET_LINK_FLAGS})
 target_link_libraries(${TARGET_NAME} bsd FTLIB Threads::Threads PkgConfig::deps)
 target_compile_definitions(${TARGET_NAME} PRIVATE
-        INPUT_FILE_NAME="${CMAKE_CURRENT_SOURCE_DIR}/include/input"
-        )
+        INPUT_FILE_NAME="${CMAKE_CURRENT_SOURCE_DIR}/include/input")
